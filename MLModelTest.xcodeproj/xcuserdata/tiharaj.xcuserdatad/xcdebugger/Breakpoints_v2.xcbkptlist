@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "036F977A-8F83-4205-ACC2-84E0CD33EF4A"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9144CA77-0B7B-4087-8DF5-FE2A80C192E7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MLModelTest/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "9144CA77-0B7B-4087-8DF5-FE2A80C192E7 - 75eedfcefbd00bb6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TwitterCloneFYP.ContentView.body.getter : some"
+                  moduleName = "TwitterCloneFYP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tiharaj/Desktop/MLModelTest/MLModelTest/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  uuid = "9144CA77-0B7B-4087-8DF5-FE2A80C192E7 - 1876d9630e0fc448"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of TwitterCloneFYP.ContentView.mainInterfaceView : some&gt;&gt;.0 in TwitterCloneFYP.ContentView.body.getter : some"
+                  moduleName = "TwitterCloneFYP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tiharaj/Desktop/MLModelTest/MLModelTest/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  uuid = "9144CA77-0B7B-4087-8DF5-FE2A80C192E7 - 1876d9630e0fc469"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of TwitterCloneFYP.ContentView.mainInterfaceView : some&gt;&gt;.0 in TwitterCloneFYP.ContentView.body.getter : some"
+                  moduleName = "TwitterCloneFYP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tiharaj/Desktop/MLModelTest/MLModelTest/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  uuid = "9144CA77-0B7B-4087-8DF5-FE2A80C192E7 - 1876d9630e0fc469"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of TwitterCloneFYP.ContentView.mainInterfaceView : some&gt;&gt;.0 in TwitterCloneFYP.ContentView.body.getter : some"
+                  moduleName = "TwitterCloneFYP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tiharaj/Desktop/MLModelTest/MLModelTest/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "148">
+               </Location>
+               <Location
+                  uuid = "9144CA77-0B7B-4087-8DF5-FE2A80C192E7 - 78acb2b0b2324cc6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI._ConditionalContent&lt;TwitterCloneFYP.LoginView, &lt;&lt;opaque return type of TwitterCloneFYP.ContentView.mainInterfaceView : some&gt;&gt;.0&gt; in TwitterCloneFYP.ContentView.body.getter : some"
+                  moduleName = "TwitterCloneFYP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tiharaj/Desktop/MLModelTest/MLModelTest/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "352">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
