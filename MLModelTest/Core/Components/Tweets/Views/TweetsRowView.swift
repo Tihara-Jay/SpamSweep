@@ -40,7 +40,13 @@ struct TweetsRowView: View {
                             Text("2w")
                                 .foregroundColor(.gray)
                                 .font(.caption)
-                        }
+                            if let isSpam = viewModel.tweet.isSpam {
+//                                Text("Classification Result: \(isSpam)")
+                                if isSpam == "Spam"{
+                                    Image(systemName: "exclamationmark.triangle.fill")
+                                        .foregroundColor(.red)
+                                }
+                            }                        }
                         
                         
                         //tweet caption
