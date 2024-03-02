@@ -23,7 +23,7 @@ class  ImageAnalysis : ObservableObject{
             
             let config = MLModelConfiguration()
             config.computeUnits = .all
-            let model = try VNCoreMLModel(for: SpamImageDetectionModel(configuration: config).model)
+            let model = try VNCoreMLModel(for: PhishingImageClassification_1(configuration: config).model)
             
             let request = VNCoreMLRequest(model: model) {[weak self] response, error in
                 

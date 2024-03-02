@@ -37,12 +37,18 @@ struct TweetsRowView: View {
                             Text("@\(user.username)")
                                 .foregroundColor(.gray)
                                 .font(.caption)
-                            Text("2w")
-                                .foregroundColor(.gray)
-                                .font(.caption)
+                            
+                            if let timeAgo = timeAgoString(from: viewModel.tweet.timestamp.dateValue()){
+                                Text(timeAgo)
+                                    .foregroundColor(.gray)
+                                    .font(.caption)                            }
+                            
                             if let isSpam = viewModel.tweet.isSpam {
-//                                Text("Classification Result: \(isSpam)")
+//                                Text("Potential spam tweet detected!")
+//                                    .font(.caption)
+                                
                                 if isSpam == "Spam"{
+                                    
                                     Image(systemName: "exclamationmark.triangle.fill")
                                         .foregroundColor(.red)
                                 }
@@ -53,15 +59,16 @@ struct TweetsRowView: View {
                         Text(viewModel.tweet.caption)
                             .font(.subheadline)
                             .multilineTextAlignment(.leading)
-                            .padding(.bottom)
+                            //.padding(.bottom)
                         Spacer()
                         if let imageUrlString = viewModel.tweet.imageUrl, let imageUrl = URL(string: imageUrlString) {
                             KFImage(imageUrl)
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: 100, height: 100)
+                                .frame(width: 200, height: 200)
                                 .aspectRatio(contentMode: .fit)
-                                .padding()
+                                .cornerRadius(10)
+                                //.padding()
                         } else {
                            
                         }
@@ -103,6 +110,29 @@ struct TweetsRowView: View {
             viewModel.reloadTweets()
         }
      
+    }
+    
+    private func timeAgoString (from date: Date) -> String? {
+        let calendar = Calendar.current
+        let now = Date()
+        let components = calendar.dateComponents([.weekOfYear, .day, .hour, .minute, .second], from: date, to: now)
+        
+        if let weeks = components.weekOfYear, weeks > 0 {
+            return "\(weeks)w"
+        }
+        else if let days = components.day, days > 0 {
+            return "\(days)d"
+        }
+        else if let hours = components.hour, hours > 0 {
+            return "\(hours)h"
+        }
+        else if let mins = components.minute, mins > 0 {
+            return "\(mins)m"
+        }
+        else if let secs = components.second, secs > 0 {
+            return "\(secs)s"
+        }
+        return nil
     }
 }
 

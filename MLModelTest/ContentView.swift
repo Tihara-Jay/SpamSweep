@@ -18,7 +18,7 @@ struct ContentView: View {
             }
             else {
               mainInterfaceView
-                    .navigationTitle("Home")
+                    .navigationTitle("X")
                     .navigationBarTitleDisplayMode(.inline)
             }
             

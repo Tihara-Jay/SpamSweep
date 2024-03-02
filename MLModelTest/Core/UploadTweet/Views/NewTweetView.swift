@@ -23,7 +23,8 @@ struct NewTweetView: View {
                     presentationMode.wrappedValue.dismiss()
                 } label:{
                     Text("Cancel")
-                        .foregroundColor(Color(.black))
+                        .background(Color(.black))
+                        .foregroundColor(.white)
                 }
                 Spacer()
                 Button{

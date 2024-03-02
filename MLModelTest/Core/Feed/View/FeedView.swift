@@ -24,11 +24,18 @@ struct FeedView: View {
                 showNewTweetView.toggle()
                 
             } label:{
-                Image(systemName: "plus.circle.fill")
-                    .frame(width:80, height: 80)
-                    .font(.system(size: 49))
-                    .foregroundColor(.black)
-                    .padding()
+                ZStack{
+                    Circle()
+                        .fill(Color.blue)
+                        .frame(width: 50, height: 50)
+                    
+                    Image(systemName: "plus")
+                        .frame(width:20, height: 20)
+                        .font(.system(size: 30))
+                        .foregroundColor(.white)
+                        .padding()
+                }
+                
                    
             }
             .padding()
