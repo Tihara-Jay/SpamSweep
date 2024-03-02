@@ -10,12 +10,14 @@ import Kingfisher
 
 struct TweetsRowView: View {
     @ObservedObject var viewModel: TweetRowViewModel
+    @State private var isSpamTweet : Bool = false
     
     init(tweet: Tweet){
         self.viewModel = TweetRowViewModel(tweet: tweet)
         viewModel.fetchTweets()
     }
     
+
     var body: some View {
         VStack (alignment:.leading){
             if let user = viewModel.tweet.user {
@@ -27,7 +29,7 @@ struct TweetsRowView: View {
                         .frame(width:56, height:56)
                         .clipShape(Circle())
                     
-                    //user info and tweet caption
+                                    //user info and tweet caption
                     VStack (alignment: .leading, spacing: 4){
                         
                         //user info
@@ -41,19 +43,28 @@ struct TweetsRowView: View {
                             if let timeAgo = timeAgoString(from: viewModel.tweet.timestamp.dateValue()){
                                 Text(timeAgo)
                                     .foregroundColor(.gray)
-                                    .font(.caption)                            }
+                                    .font(.caption)
+                            }
                             
                             if let isSpam = viewModel.tweet.isSpam {
-//                                Text("Potential spam tweet detected!")
-//                                    .font(.caption)
-                                
                                 if isSpam == "Spam"{
-                                    
                                     Image(systemName: "exclamationmark.triangle.fill")
                                         .foregroundColor(.red)
                                 }
-                            }                        }
-                        
+                            }
+                        }
+                        if let isSpam = viewModel.tweet.isSpam {
+                            if isSpam == "Spam"{
+                                ZStack{
+                                    Rectangle()
+                                        .fill(Color.red.opacity(0.2))
+                                        .cornerRadius(8)
+                                    Text("Tweet with potential spam has been detected!")
+                                        .font(.caption)
+                                        .foregroundColor(.red)
+                                }
+                            }
+                        }
                         
                         //tweet caption
                         Text(viewModel.tweet.caption)
