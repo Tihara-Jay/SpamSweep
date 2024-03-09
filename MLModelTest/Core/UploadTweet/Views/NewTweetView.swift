@@ -67,7 +67,7 @@ struct NewTweetView: View {
                         Image(systemName: "waveform")
                             .frame(width:50, height: 50)
                             .font(.system(size: 20))
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                             .padding()
                         
                     }
@@ -81,7 +81,7 @@ struct NewTweetView: View {
                         Image(systemName: "photo")
                             .frame(width:50, height: 50)
                             .font(.system(size: 20))
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                             .padding()
                         
                     }
@@ -95,7 +95,7 @@ struct NewTweetView: View {
                         Image(systemName: "checklist")
                             .frame(width:50, height: 50)
                             .font(.system(size: 20))
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                             .padding()
                         
                     }
@@ -106,7 +106,7 @@ struct NewTweetView: View {
                         Image(systemName: "mappin")
                             .frame(width:50, height: 50)
                             .font(.system(size: 20))
-                            .foregroundColor(.black)
+                            .foregroundColor(.white)
                             .padding()
                         
                     }

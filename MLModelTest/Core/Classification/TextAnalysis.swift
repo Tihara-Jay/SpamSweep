@@ -34,7 +34,10 @@ class TextAnalysis : ObservableObject {
         
         // Perform classification
         if let classification = textClassifier.predictedLabel(for: text) {
-            self.classificationResult = classification
+            DispatchQueue.main.async {
+                self.classificationResult = classification
+            }
+           
            
         } else {
             self.classificationResult = "Classification failed."

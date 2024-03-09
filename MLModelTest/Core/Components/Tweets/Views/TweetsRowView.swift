@@ -47,14 +47,14 @@ struct TweetsRowView: View {
                             }
                             
                             if let isSpam = viewModel.tweet.isSpam {
-                                if isSpam == "Spam"{
+                                if isSpam == "Spam" || isSpam == "spam"{
                                     Image(systemName: "exclamationmark.triangle.fill")
                                         .foregroundColor(.red)
                                 }
                             }
                         }
                         if let isSpam = viewModel.tweet.isSpam {
-                            if isSpam == "Spam"{
+                            if isSpam == "Spam" || isSpam == "spam"{
                                 ZStack{
                                     Rectangle()
                                         .fill(Color.red.opacity(0.2))
