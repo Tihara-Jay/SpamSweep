@@ -46,15 +46,14 @@ struct TweetsRowView: View {
                                     .font(.caption)
                             }
                             
-                            if let isSpam = viewModel.tweet.isSpam {
-                                if isSpam == "Spam" || isSpam == "spam"{
+                            if viewModel.tweet.isImageSpam ?? false || viewModel.tweet.isTextSpam ?? false {
+                                
                                     Image(systemName: "exclamationmark.triangle.fill")
                                         .foregroundColor(.red)
                                 }
-                            }
+                     
                         }
-                        if let isSpam = viewModel.tweet.isSpam {
-                            if isSpam == "Spam" || isSpam == "spam"{
+                    if viewModel.tweet.isImageSpam ?? false || viewModel.tweet.isTextSpam ?? false {
                                 ZStack{
                                     Rectangle()
                                         .fill(Color.red.opacity(0.2))
@@ -64,8 +63,7 @@ struct TweetsRowView: View {
                                         .foregroundColor(.red)
                                 }
                             }
-                        }
-                        
+                
                         //tweet caption
                         Text(viewModel.tweet.caption)
                             .font(.subheadline)

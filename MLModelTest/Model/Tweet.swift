@@ -19,4 +19,6 @@ struct Tweet: Identifiable, Decodable {
     var didLike: Bool? = false
     
     var isSpam: String?
+    var isImageSpam : Bool?
+    var isTextSpam: Bool?
 }

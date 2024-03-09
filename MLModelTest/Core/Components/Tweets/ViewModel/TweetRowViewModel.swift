@@ -42,7 +42,10 @@ class TweetRowViewModel: ObservableObject {
     func passImageUrl() {
         if let imageUrlString = tweet.imageUrl, !imageUrlString.isEmpty, let url = URL(string: imageUrlString) {
             imageAnalysis.classificationCompletion = { result in
-                self.tweet.isSpam = result
+                if result == "Spam"{
+                    self.tweet.isImageSpam = true
+                }
+                //self.tweet.isSpam = result
             }
             imageAnalysis.loadImageFromURL(url: url)
             
@@ -52,8 +55,11 @@ class TweetRowViewModel: ObservableObject {
     func passTextTweet(){
         textAnalysis.classifyText(tweet.caption)
         DispatchQueue.main.async{
+            if self.textAnalysis.classificationResult == "spam"{
+                self.tweet.isTextSpam = true
+            }
             self.tweet.isSpam = self.textAnalysis.classificationResult
-            print("TEXT RESULT for \(self.tweet.caption) -> \(self.tweet.isSpam)")
+            //print("TEXT RESULT for \(self.tweet.caption) -> \(self.tweet.isSpam)")
         }
     }
 }
