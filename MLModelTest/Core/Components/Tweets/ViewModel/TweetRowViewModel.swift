@@ -11,6 +11,7 @@ class TweetRowViewModel: ObservableObject {
     @Published var tweet: Tweet
     @Published var tweets: [Tweet] = []
     @Published var imageAnalysis : ImageAnalysis = ImageAnalysis()
+    @Published var textAnalysis : TextAnalysis = TextAnalysis()
     
     private let service = TweetService()
     
@@ -30,6 +31,7 @@ class TweetRowViewModel: ObservableObject {
             [weak self] tweets in
             self?.tweets = tweets
             self?.passImageUrl()
+            self?.passTextTweet()
         }
     }
     
@@ -38,19 +40,20 @@ class TweetRowViewModel: ObservableObject {
     }
     
     func passImageUrl() {
-        if ( !((tweet.imageUrl?.isEmpty) == nil) ){
-           // print("Image URL: \(tweet.imageUrl)")
-//            guard let imageUrlString = tweet.imageUrl, !imageUrlString.isEmpty, let url = URL(string: imageUrlString) else {
-//                       print("pass image URL() failed")
-//                       return
-                  }
-            if let imageUrlString = tweet.imageUrl, !imageUrlString.isEmpty, let url = URL(string: imageUrlString) {
-                       
-                       imageAnalysis.classificationCompletion = { result in
-                           self.tweet.isSpam = result
-                       }
+        if let imageUrlString = tweet.imageUrl, !imageUrlString.isEmpty, let url = URL(string: imageUrlString) {
+            imageAnalysis.classificationCompletion = { result in
+                self.tweet.isSpam = result
+            }
             imageAnalysis.loadImageFromURL(url: url)
-          
+            
+        }
+    }
+    
+    func passTextTweet(){
+        textAnalysis.classifyText(tweet.caption)
+        DispatchQueue.main.async{
+            self.tweet.isSpam = self.textAnalysis.classificationResult
+            print("TEXT RESULT for \(self.tweet.caption) -> \(self.tweet.isSpam)")
         }
     }
 }

@@ -18,7 +18,7 @@ class  ImageAnalysis : ObservableObject{
     var classificationCompletion : ((String) -> Void)??
     
     lazy var classificationRequest : VNCoreMLRequest = {
-        print("inside the classification request")
+        //print("inside the classification request")
         do{
             
             let config = MLModelConfiguration()
@@ -46,11 +46,11 @@ class  ImageAnalysis : ObservableObject{
     }()
     
     func runMLPipeline(url:URL)  {
-        print("Inside ML pipeline")
+        //print("Inside ML pipeline")
         DispatchQueue.global(qos: .userInitiated).async {
              self.loadImageFromURL(url: url)
             guard let image = self.selectedImage else {
-                print("loading selected image failed")
+                //print("loading selected image failed")
                 return
             }
             if let convertedImage = self.preprocessImage(image: image){
@@ -73,7 +73,7 @@ class  ImageAnalysis : ObservableObject{
     func loadImageFromURL(url: URL)  {
         DispatchQueue.global(qos: .userInitiated).async {
             do {
-                print("loading image from URL started")
+                //print("loading image from URL started")
                 let imageData = try Data(contentsOf: url)
                 if let image = UIImage(data: imageData) {
                     if let tweetImage = self.preprocessImage(image: image) {
@@ -87,7 +87,7 @@ class  ImageAnalysis : ObservableObject{
                 } else {
                     print("Failed to convert data to image")
                 }
-                print("finished loading image")
+                //print("finished loading image")
             } catch {
                 print("Error loading image from URL: \(error.localizedDescription)")
             }
@@ -124,9 +124,8 @@ class  ImageAnalysis : ObservableObject{
         DispatchQueue.main.async {
             guard let  result = response.results   else {return}
             //print("response: \(response)")
-            print("result \(result)")
-          
-            
+            //print("result \(result)")
+                      
            let classification = result as! [VNClassificationObservation]
            let description = classification.prefix(5).filter({
                 $0.confidence > 0.5
@@ -134,12 +133,10 @@ class  ImageAnalysis : ObservableObject{
             
             if let identifier = description.first?.identifier{
                 self.identifier = identifier
-                print("RESULT: \(identifier)")
+                //print("RESULT: \(identifier)")
                 if let completion = self.classificationCompletion {
                     completion?(identifier)
                 }
-                //self.classificationCompletion?(identifier)
-            
             }
         }
     }
