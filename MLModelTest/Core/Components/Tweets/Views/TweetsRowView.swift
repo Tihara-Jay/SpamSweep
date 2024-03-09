@@ -58,6 +58,7 @@ struct TweetsRowView: View {
                                     Rectangle()
                                         .fill(Color.red.opacity(0.2))
                                         .cornerRadius(8)
+                                        .frame(width:300, height:20)
                                     Text("Tweet with potential spam has been detected!")
                                         .font(.caption)
                                         .foregroundColor(.red)
