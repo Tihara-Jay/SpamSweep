@@ -28,7 +28,12 @@ struct NewTweetView: View {
                 }
                 Spacer()
                 Button{
-                    viewModel.uploadTweet(withCaption: caption, uploadedImage: selectedImage)
+                    viewModel.uploadTweet(withCaption: caption, uploadedImage: selectedImage) { success in
+                        if success {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    }
+
                 } label:{
                     Text("Post")
                         .padding(.horizontal)

@@ -8,18 +8,17 @@
 import Foundation
 import UIKit
 
-class UploadTweetViewModel: ObservableObject{
+class UploadTweetViewModel: ObservableObject {
     @Published var didUploadTweet = false
     let service = TweetService()
     
-    func uploadTweet(withCaption caption: String, uploadedImage: UIImage?){
+    func uploadTweet(withCaption caption: String, uploadedImage: UIImage?, completion: @escaping (Bool) -> Void) {
         service.uploadTweet(caption: caption, image: uploadedImage) { success in
             if success {
                 self.didUploadTweet = true
             }
-            else{
-                
-            }
+            completion(success) // Notify completion handler about upload success
         }
     }
 }
+

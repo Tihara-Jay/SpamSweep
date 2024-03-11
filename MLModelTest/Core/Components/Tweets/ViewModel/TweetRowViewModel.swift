@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 class TweetRowViewModel: ObservableObject {
     @Published var tweet: Tweet
@@ -14,10 +15,29 @@ class TweetRowViewModel: ObservableObject {
     @Published var textAnalysis : TextAnalysis = TextAnalysis()
     
     private let service = TweetService()
-    
+    private var listener: ListenerRegistration?
     
     init(tweet: Tweet){
         self.tweet = tweet
+    }
+    
+    private func listenForTweetChanges() {
+        listener = Firestore.firestore().collection("tweets").document(tweet.id ?? "32324").addSnapshotListener { [weak self] snapshot, error in
+            guard let snapshot = snapshot, snapshot.exists else {
+                print("Error fetching tweet: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+            
+            do {
+                 let updatedTweet = try snapshot.data(as: Tweet.self)
+                    self?.tweet = updatedTweet
+                    self?.passImageUrl()
+                    self?.passTextTweet()
+                
+            } catch {
+                print("Error decoding tweet: \(error.localizedDescription)")
+            }
+        }
     }
     
     func likeTweet(){
@@ -45,7 +65,6 @@ class TweetRowViewModel: ObservableObject {
                 if result == "Spam"{
                     self.tweet.isImageSpam = true
                 }
-                //self.tweet.isSpam = result
             }
             imageAnalysis.loadImageFromURL(url: url)
             
@@ -53,13 +72,12 @@ class TweetRowViewModel: ObservableObject {
     }
     
     func passTextTweet(){
-        textAnalysis.classifyText(tweet.caption)
+        textAnalysis.classifyText(tweet.caption ?? " ")
         DispatchQueue.main.async{
             if self.textAnalysis.classificationResult == "spam"{
                 self.tweet.isTextSpam = true
             }
             self.tweet.isSpam = self.textAnalysis.classificationResult
-            //print("TEXT RESULT for \(self.tweet.caption) -> \(self.tweet.isSpam)")
         }
     }
 }

@@ -51,26 +51,56 @@ struct TweetService{
         }
     }
     
-    func fetchTweets(completion: @escaping([Tweet]) -> Void){
-        Firestore.firestore().collection("tweets")
+    func fetchTweets(completion: @escaping([Tweet]) -> Void) -> ListenerRegistration{
+        let listener = Firestore.firestore().collection("tweets")
             .order(by: "timestamp", descending: true)
-            .getDocuments { snapshot, _ in
-            guard let documents = snapshot?.documents else { return }
-            let tweets = documents.compactMap({ try? $0.data(as: Tweet.self)})
-            completion(tweets)
+            .addSnapshotListener { snapshot, error in
+                guard let snapshot = snapshot else {
+                    print("Error fetching tweets: \(error?.localizedDescription ?? "Unknown error")")
+                    completion([])
+                    return
+                }
+                let tweets = snapshot.documents.compactMap { document -> Tweet? in
+                    do {
+                        let tweet = try document.data(as: Tweet.self)
+                        
+                        return tweet
+                    } catch {
+                        print("Error decoding tweet: \(error.localizedDescription)")
+                        return nil
+                    }
+                }
                 
-        }
+                completion(tweets)
+            }
+        
+        return listener
     }
     
-    func fetchTweets(forUid uid: String, completion: @escaping([Tweet]) -> Void){
-        Firestore.firestore().collection("tweets")
-            .whereField("uid", isEqualTo: uid)
-            .getDocuments { snapshot, _ in
-            guard let documents = snapshot?.documents else { return }
-            let tweets = documents.compactMap({ try? $0.data(as: Tweet.self)})
-                completion(tweets.sorted(by: {$0.timestamp.dateValue() > $1.timestamp.dateValue()}))
+    func fetchTweets(forUid uid: String, completion: @escaping([Tweet]) -> Void) -> ListenerRegistration{
+        let listener = Firestore.firestore().collection("tweets")
+                    .whereField("uid", isEqualTo: uid)
+                    .addSnapshotListener { snapshot, error in
+                        guard let snapshot = snapshot else {
+                            print("Error fetching user tweets: \(error?.localizedDescription ?? "Unknown error")")
+                            completion([])
+                            return
+                        }
+                        
+                        let tweets = snapshot.documents.compactMap { document -> Tweet? in
+                            do {
+                                let tweet = try document.data(as: Tweet.self)
+                                return tweet
+                            } catch {
+                                print("Error decoding user tweet: \(error.localizedDescription)")
+                                return nil
+                            }
+                        }
+                        
+                        completion(tweets.sorted(by: { $0.timestamp.dateValue() > $1.timestamp.dateValue() }))
+                    }
                 
-        }
+                return listener
     }
     
     func likeTweet(_ tweet: Tweet, completion: @escaping() -> Void){
