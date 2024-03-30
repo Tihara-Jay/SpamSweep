@@ -18,7 +18,7 @@ class  ImageAnalysis : ObservableObject{
     var classificationCompletion : ((String) -> Void)??
     
     lazy var classificationRequest : VNCoreMLRequest = {
-        //print("inside the classification request")
+  
         do{
             
             let config = MLModelConfiguration()
