@@ -66,7 +66,7 @@ struct TweetsRowView: View {
                             }
                 
                         //tweet caption
-                        Text(viewModel.tweet.caption ?? "")
+                        Text(LocalizedStringKey(viewModel.tweet.caption ?? ""))
                             .font(.subheadline)
                             .multilineTextAlignment(.leading)
                             //.padding(.bottom)
@@ -145,7 +145,3 @@ struct TweetsRowView: View {
         return nil
     }
 }
-
-//#Preview {
-//    TweetsRowView()
-//}

@@ -18,7 +18,7 @@ struct ContentView: View {
             }
             else {
               mainInterfaceView
-                    .navigationTitle("X")
+                    .navigationTitle("X - SpamSweep")
                     .navigationBarTitleDisplayMode(.inline)
             }
             
