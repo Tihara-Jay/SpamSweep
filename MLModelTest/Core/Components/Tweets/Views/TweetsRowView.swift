@@ -11,6 +11,7 @@ import Kingfisher
 struct TweetsRowView: View {
     @ObservedObject var viewModel: TweetRowViewModel
     @State private var isSpamTweet : Bool = false
+    @State private var isTweetLiked : Bool = false
     
     init(tweet: Tweet){
         self.viewModel = TweetRowViewModel(tweet: tweet)
@@ -98,11 +99,18 @@ struct TweetsRowView: View {
                 Spacer()
                 Button{
                     viewModel.likeTweet()
+                    isTweetLiked = true
                 }
                 label: {
-                    Image(systemName: viewModel.tweet.didLike ?? false ? "heart.fill" : "heart")
-                        .font(.subheadline)
-                        .foregroundColor(viewModel.tweet.didLike ?? false ? .red : .gray)
+                    HStack {
+                        Image(systemName: isTweetLiked ? "heart.fill" : "heart")
+                            .font(.subheadline)
+                            .foregroundColor(isTweetLiked ? .red : .gray)
+                        
+                        Text("\(viewModel.tweet.likes)")
+                            .font(.subheadline)
+                            .foregroundColor(.white)
+                    }
                 }
                 Spacer()
                 Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
