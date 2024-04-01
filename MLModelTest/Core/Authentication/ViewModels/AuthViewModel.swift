@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseAuth
 
 class AuthViewModel: ObservableObject{
     @Published var userSession: FirebaseAuth.User? //storing the user session (will have a value if user is logged in, if not nil)

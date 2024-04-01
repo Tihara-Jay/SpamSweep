@@ -76,7 +76,7 @@ struct TweetsRowView: View {
                             KFImage(imageUrl)
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: 200, height: 200)
+                                .frame(width: 300, height: 300)
                                 .aspectRatio(contentMode: .fit)
                                 .cornerRadius(10)
                                 //.padding()
@@ -88,7 +88,7 @@ struct TweetsRowView: View {
             //action buttons
             HStack{
                 Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    Image(systemName: "bubble.left")
+                    Image(systemName: "message")
                         .font(.subheadline)
                 })
                 Spacer()

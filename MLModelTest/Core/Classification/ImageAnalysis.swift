@@ -53,9 +53,8 @@ class  ImageAnalysis : ObservableObject{
                 //print("loading selected image failed")
                 return
             }
-            if let convertedImage = self.preprocessImage(image: image){
-                guard let ciImage = CIImage(image: convertedImage) else {return}
-                //guard let ciImage = CIImage(image: image) else {return}
+            //if let convertedImage = self.preprocessImage(image: image){
+                guard let ciImage = CIImage(image: image) else {return}
                 
                 let handler = VNImageRequestHandler(ciImage: ciImage)
                 
@@ -66,7 +65,7 @@ class  ImageAnalysis : ObservableObject{
                     print("Unable to perform the ML task")
                     
                 }
-            }
+            //}
         }
     }
     
@@ -76,18 +75,18 @@ class  ImageAnalysis : ObservableObject{
                 //print("loading image from URL started")
                 let imageData = try Data(contentsOf: url)
                 if let image = UIImage(data: imageData) {
-                    if let tweetImage = self.preprocessImage(image: image) {
-                        //DispatchQueue.main.async {
-                            self.selectedImage = tweetImage
+                    //if let tweetImage = self.preprocessImage(image: image) {
+                        
+                            self.selectedImage = image
                             self.runMLPipeline(url: url) // Call runMLPipeline after setting selectedImage
-                        //}
-                    } else {
-                        print("TEST ERROR")
-                    }
+                        
+//                    } else {
+//                        print("TEST ERROR")
+//                    }
                 } else {
                     print("Failed to convert data to image")
                 }
-                //print("finished loading image")
+               
             } catch {
                 print("Error loading image from URL: \(error.localizedDescription)")
             }
@@ -96,27 +95,27 @@ class  ImageAnalysis : ObservableObject{
     }
 
     
-    func preprocessImage(image: UIImage) -> UIImage? {
-            let newSize = CGSize(width: 299, height: 299)
-
-            UIGraphicsBeginImageContextWithOptions(newSize, true, 1.0)
-            defer {
-                UIGraphicsEndImageContext()
-            }
-
-            guard let context = UIGraphicsGetCurrentContext() else {
-                return nil
-            }
-
-            // Flip the coordinate system to match UIKit's
-            context.translateBy(x: 0, y: newSize.height)
-            context.scaleBy(x: 1.0, y: -1.0)
-
-            // Draw the image in the new size
-            context.draw(image.cgImage!, in: CGRect(origin: .zero, size: newSize))
-
-            return UIGraphicsGetImageFromCurrentImageContext()
-        }
+//    func preprocessImage(image: UIImage) -> UIImage? {
+//            let newSize = CGSize(width: 299, height: 299)
+//
+//            UIGraphicsBeginImageContextWithOptions(newSize, true, 1.0)
+//            defer {
+//                UIGraphicsEndImageContext()
+//            }
+//
+//            guard let context = UIGraphicsGetCurrentContext() else {
+//                return nil
+//            }
+//
+//            // Flip the coordinate system to match UIKit's
+//            context.translateBy(x: 0, y: newSize.height)
+//            context.scaleBy(x: 1.0, y: -1.0)
+//
+//            // Draw the image in the new size
+//            context.draw(image.cgImage!, in: CGRect(origin: .zero, size: newSize))
+//
+//            return UIGraphicsGetImageFromCurrentImageContext()
+//        }
 
     
     func checkResults(response : VNRequest){
