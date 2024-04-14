@@ -83,7 +83,7 @@ extension ProfileView {
                 Text("Edit Profile")
                     .font(.subheadline).bold()
                     .frame(width: 120, height: 32)
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                     .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 0.75))
             }
         }
@@ -101,7 +101,7 @@ extension ProfileView {
             }
             Text("@\(viewModel.user.username)")
                 .font(.subheadline)
-                .foregroundColor(.gray)
+                .foregroundColor(.white)
             
             Text("New account trial")
                 .font(.subheadline)
